@@ -3,7 +3,13 @@ import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-const menuItems = [
+type MenuItem = {
+  id: number;
+  name: string;
+  price: number;
+};
+
+const menuItems: MenuItem[] = [
   { id: 1, name: "Andhra Chicken Curry", price: 180 },
   { id: 2, name: "Gongura Mutton", price: 250 },
   { id: 3, name: "Pesarattu Dosa", price: 90 },
@@ -11,9 +17,9 @@ const menuItems = [
 ];
 
 export default function AndhraFoodApp() {
-  const [cart, setCart] = useState<any[]>([]);
+  const [cart, setCart] = useState<MenuItem[]>([]);
 
-  const addToCart = (item: any) => {
+  const addToCart = (item: MenuItem) => {
     setCart([...cart, item]);
   };
 
@@ -75,12 +81,10 @@ export default function AndhraFoodApp() {
               </Card>
             ))}
 
-            {/* ✅ Total price */}
             <div className="text-right font-semibold text-lg mt-4">
               Total: ₹{totalPrice}
             </div>
 
-            {/* ✅ Place Order button */}
             <div className="text-center mt-4">
               <Button className="w-full" onClick={placeOrder}>
                 Place Order
